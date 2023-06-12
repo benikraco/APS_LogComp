@@ -6,46 +6,45 @@
 
 %%
 
-[ \t]             /* Ignorar espaços em branco e nova linha */ 
+[ \t]+                /* Ignorar espaços em branco */ 
+"\n"                  return NEWLINE; 
 
-"funcao"            return FUNCAO;
-"::"                return DOISPONTOS;
-"fim"               return FIM;
-"enquanto"          return ENQUANTO;
-"se"                return SE;
-"senao"             return SENAO;
-"retorne"           return RETORNE;
-"leia"              return LEIA;
-"imprima"           return IMPRIMA;
-"Int"               return INT;
-"String"            return STRING;
+"funcao"              return FUNCAO;
+"::"                  return DOISPONTOS;
+"fim"                 return FIM;
+"enquanto"            return ENQUANTO;
+"se"                  return SE;
+"senao"               return SENAO;
+"retorne"             return RETORNE;
+"leia"                return LEIA;
+"imprima"             return IMPRIMA;
+"Int"                 return INT;
+"String"              return STRING;
 
-"+"                 return ADD;
-"-"                 return SUB;
-"!"                 return NOT;
-"*"                 return MUL;
-"/"                 return DIV;
-"&&"                return AND;
-"."                 return DOT;
-"<"                 return LT;
-">"                 return GT;
-"=="                return EQ;
-"("                 return LPAREN;
-")"                 return RPAREN;
-","                 return COMMA;
-"="                 return ASSIGN;
-"\n"                return NEWLINE; 
+"+"                   return ADD;
+"-"                   return SUB;
+"!"                   return NOT;
+"*"                   return MUL;
+"/"                   return DIV;
+"&&"                  return AND;
+"."                   return DOT;
+"<"                   return LT;
+">"                   return GT;
+"=="                  return EQ;
+"("                   return LPAREN;
+")"                   return RPAREN;
+","                   return COMMA;
+"="                   return ASSIGN;
 
-[a-zA-Z_][_a-zA-Z0-9]   return IDENTIFIER;
-[a-zA-Z0-9]             return STRING;
-[0-9]+                  return NUMERO;
+[a-zA-Z_][a-zA-Z_0-9]*   { yylval.id = strdup(yytext); return IDENTIFIER; }
+"\"[^\"]*\""           { yylval.str = strdup(yytext+1); yylval.str[strlen(yytext)-2] = 0; return STRING; }
+[0-9]+                 { yylval.num = atoi(yytext); return NUMERO; }
 
-.                   /* Ignorar caracteres desconhecidos */ 
+.                     { fprintf(stderr, "Caracter desconhecido: %s\n", yytext); }
 
 %%
-
 
 int yywrap(void) {
     return 1;
 }
-
+               

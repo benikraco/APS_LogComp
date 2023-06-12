@@ -1,9 +1,10 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include "lex.yy.c"
 #include "parser_helper.h"
+int yylex(void);
 %}
+
 
 %union {
     int num;
@@ -134,3 +135,4 @@ int main(void) {
     yyparse();
     return 0;
 }
+

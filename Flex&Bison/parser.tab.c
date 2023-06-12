@@ -134,8 +134,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "lex.yy.c"
 #include "parser_helper.h"
+int yylex(void);
 
 
 /* Enabling traces.  */
@@ -158,7 +158,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 8 "parser.y"
+#line 9 "parser.y"
 {
     int num;
     char *str;
@@ -483,12 +483,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    22,    22,    23,    27,    28,    29,    30,    31,    32,
-      33,    37,    41,    44,    45,    49,    53,    57,    60,    61,
-      65,    66,    67,    71,    72,    73,    74,    75,    79,    80,
-      81,    82,    86,    87,    88,    89,    90,    91,    94,    95,
-      99,   102,   103,   107,   108,   112,   116,   117,   118,   119,
-     123
+       0,    23,    23,    24,    28,    29,    30,    31,    32,    33,
+      34,    38,    42,    45,    46,    50,    54,    58,    61,    62,
+      66,    67,    68,    72,    73,    74,    75,    76,    80,    81,
+      82,    83,    87,    88,    89,    90,    91,    92,    95,    96,
+     100,   103,   104,   108,   109,   113,   117,   118,   119,   120,
+     124
 };
 #endif
 
@@ -1675,7 +1675,7 @@ yyreturn:
 }
 
 
-#line 126 "parser.y"
+#line 127 "parser.y"
 
 
 void yyerror(const char *s) {
@@ -1687,4 +1687,5 @@ int main(void) {
     yyparse();
     return 0;
 }
+
 
