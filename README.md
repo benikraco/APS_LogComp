@@ -1,4 +1,4 @@
-# LinguaNova
+# Lingua Nova
 
 ## Motivação
 
